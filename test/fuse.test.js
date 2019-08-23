@@ -2,7 +2,7 @@ const Fuse = require('../dist/fuse')
 const books = require('./fixtures/books.json')
 const deepValue = require('../src/helpers/deep_value')
 
-const verbose = false
+const verbose = true
 
 const defaultList = ['Apple', 'Orange', 'Banana']
 const defaultOptions = {
@@ -33,7 +33,7 @@ const setup = (itemList, overwriteOptions) => {
   return new Fuse(list, options)
 }
 
-describe('Flat list of strings: ["Apple", "Orange", "Banana"]', () => {
+fdescribe('Flat list of strings: ["Apple", "Orange", "Banana"]', () => {
   let fuse
   beforeEach(() => fuse = setup())
 
@@ -42,16 +42,16 @@ describe('Flat list of strings: ["Apple", "Orange", "Banana"]', () => {
     expect(fuse).toMatchObject(expected)
   })
 
-  describe('When searching for the term "Apple"', () => {
+  describe('When searching for the term "Orange"', () => {
     let result
-    beforeEach(() => result = fuse.search('Apple'))
+    beforeEach(() => result = fuse.search('Orange'))
 
-    test('we get a list of exactly 1 item', () => {
+    fit('we get a list of exactly 1 item', () => {
       expect(result).toHaveLength(1)
     })
 
-    test('whose value is the index 0, representing ["Apple"]', () => {
-      expect(result[0]).toBe(0)
+    test('whose value is the index 0, representing ["Orange"]', () => {
+      expect(result[0]).toBe(1)
     })
   })
 

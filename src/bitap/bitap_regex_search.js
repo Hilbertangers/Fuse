@@ -6,6 +6,7 @@ module.exports = (text, pattern, tokenSeparator = / +/g) => {
   let isMatch = !!matches
   let matchedIndices = []
 
+  console.log("TCL: regex", regex)
   if (isMatch) {
     for (let i = 0, matchesLen = matches.length; i < matchesLen; i += 1) {
       let match = matches[i]

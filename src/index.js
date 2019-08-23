@@ -91,6 +91,8 @@ class Fuse {
 
     let { weights, results } = this._search(tokenSearchers, fullSearcher)
 
+    this._log(`---------\ninit results: "${JSON.stringify({ weights, results })}"`)
+
     this._computeScore(weights, results)
 
     if (this.options.shouldSort) {
@@ -100,6 +102,8 @@ class Fuse {
     if (opts.limit && typeof opts.limit === 'number') {
       results = results.slice(0, opts.limit)
     }
+
+    this._log(`---------\nResults: "${this._format(results)}"`)
 
     return this._format(results)
   }
@@ -116,6 +120,8 @@ class Fuse {
     }
 
     let fullSearcher = new Bitap(pattern, this.options)
+
+    this._log(`---------\nfullSearcher: "${JSON.stringify(fullSearcher)}"`)
 
     return { tokenSearchers, fullSearcher }
   }
@@ -199,6 +205,7 @@ class Fuse {
       this._log(`\nKey: ${key === '' ? '-' : key}`)
 
       let mainSearchResult = fullSearcher.search(value)
+      this._log(`---------\nmainSearchResult: "${JSON.stringify(mainSearchResult)}"`)
       this._log(`Full text: "${value}", score: ${mainSearchResult.score}`)
 
       if (this.options.tokenize) {

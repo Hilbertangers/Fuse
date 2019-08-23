@@ -14,7 +14,7 @@ class Bitap {
     distance = 100,
     // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match
     // (of both letters and location), a threshold of '1.0' would match anything.
-    threshold = 0.6,
+    threshold = 1,
     // Machine word size
     maxPatternLength = 32,
     // Indicates whether comparisons should be case sensitive.
@@ -37,17 +37,18 @@ class Bitap {
       findAllMatches,
       minMatchCharLength
     }
-
+    
     this.pattern = this.options.isCaseSensitive ? pattern : pattern.toLowerCase()
 
     if (this.pattern.length <= maxPatternLength) {
       this.patternAlphabet = patternAlphabet(this.pattern)
     }
   }
-
   search (text) {
+    console.log("TCL: Bitap -> search -> text", text)
     if (!this.options.isCaseSensitive) {
       text = text.toLowerCase()
+      console.log("TCL: Bitap -> search -> text", text)
     }
 
     // Exact match
@@ -77,8 +78,9 @@ class Bitap {
   }
 }
 
-// let x = new Bitap("od mn war", {})
-// let result = x.search("Old Man's War")
-// console.log(result)
 
+let x = new Bitap("ldman", {})
+let result = x.search("OldMannwq‘’")
+
+console.log("TCL: result", result)
 module.exports = Bitap

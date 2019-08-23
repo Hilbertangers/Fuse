@@ -1,4 +1,6 @@
-module.exports = (pattern, { errors = 0, currentLocation = 0, expectedLocation = 0, distance = 100 }) => {
+module.exports = (pattern, 
+  { errors = 0, currentLocation = 0, expectedLocation = 0, distance = 100 }
+  ) => {
   const accuracy = errors / pattern.length
   const proximity = Math.abs(expectedLocation - currentLocation)
 
